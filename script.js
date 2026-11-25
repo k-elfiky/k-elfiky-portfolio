@@ -130,8 +130,7 @@ function updateActiveNav() {
     });
 
     navLinks.forEach((link) => {
-        const href = link.getAttribute('href').slice(1);
-        link.style.color = href === currentId ? 'var(--accent)' : '';
+        link.classList.toggle('active', link.getAttribute('href').slice(1) === currentId);
     });
 }
 
