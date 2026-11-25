@@ -193,16 +193,31 @@ if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const btn = contactForm.querySelector('button');
-        const originalHTML = btn.innerHTML;
+        const formData = new FormData(contactForm);
 
-        btn.innerHTML = '<span>Message Sent!</span>';
-        btn.style.background = 'var(--accent-dim)';
+        const name = String(formData.get('name') || '').trim();
+        const email = String(formData.get('email') || '').trim();
+        const subject = String(formData.get('subject') || '').trim();
+        const message = String(formData.get('message') || '').trim();
 
-        setTimeout(() => {
-            btn.innerHTML = originalHTML;
-            btn.style.background = '';
-            contactForm.reset();
-        }, 2500);
+        const mailto =
+            'mailto:kareemelfiky950@gmail.com' +
+            '?subject=' + encodeURIComponent('Portfolio message: ' + (subject || 'New message')) +
+            '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+
+        btn.innerHTML = '<span>Opening your email app…</span>';
+
+        let opened = false;
+        try {
+            opened = Boolean(window.open(mailto, '_blank'));
+        } catch (err) {
+            opened = false;
+        }
+        if (!opened) {
+            window.location.href = mailto;
+        }
+
+        contactForm.reset();
     });
 }
 
