@@ -186,30 +186,6 @@ function animateGlow() {
 animateGlow();
 
 // ========================================
-// Contact Form
-// ========================================
-// The form submits natively: it has an action pointing at form submit
-// endpoints (FormSubmit) that email the submissions to kareemelfiky950@gmail.com.
-const contactForm = document.getElementById('contactForm');
-if (contactForm && !contactForm.getAttribute('action')) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = contactForm.querySelector('button');
-        btn.innerHTML = '<span>Opening your email app…</span>';
-        let opened = false;
-        try {
-            opened = Boolean(window.open('mailto:kareemelfiky950@gmail.com', '_blank'));
-        } catch (err) {
-            opened = false;
-        }
-        if (!opened) {
-            window.location.href = 'mailto:kareemelfiky950@gmail.com';
-        }
-        contactForm.reset();
-    });
-}
-
-// ========================================
 // Parallax Grid
 // ========================================
 const gridBg = document.querySelector('.hero-grid-bg');
