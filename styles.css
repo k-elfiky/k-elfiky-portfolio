@@ -1048,6 +1048,12 @@ textarea:focus-visible {
     gap: 48px;
 }
 
+.contact-grid .contact-info {
+    grid-column: 1 / -1;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
 .contact-intro {
     font-size: 16px;
     color: var(--text-secondary);
